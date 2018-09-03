@@ -11,19 +11,19 @@
     "test": "mocha --compilers ts:ts-node/register src/*.spec.ts src/**/*.spec.ts"
   },
   "dependencies": {
-    "uuid": "^3.0.1"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@types/chai": "3.5.0",
-    "@types/mocha": "2.2.40",
-    "@types/node": "^10.0.1",
-    "@types/uuid": "2.0.29",
-    "chai": "^3.5.0",
-    "mocha": "^3.2.0",
-    "ts-node": "^3.0.2",
-    "tslint": "5.9.1",
-    "tslint-eslint-rules": "^4.1.1",
-    "tslint-immutable": "^4.5.0",
-    "typescript": "2.5.3"
+    "@types/chai": "4.1.4",
+    "@types/mocha": "5.2.5",
+    "@types/node": "^10.9.4",
+    "@types/uuid": "3.4.4",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1",
+    "tslint": "5.11.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-immutable": "^4.7.0",
+    "typescript": "3.0.3"
   }
 }
