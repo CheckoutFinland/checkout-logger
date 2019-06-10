@@ -190,8 +190,8 @@ exports.LogSpan = LogSpan;
  */
 // tslint:disable-next-line: no-any
 exports.debug = (type, message, group, user, 
-    // tslint:disable-next-line: no-any
-    meta) => {
+// tslint:disable-next-line: no-any
+meta) => {
     const span = new LogSpan();
     span.debug(type, message, group, user, meta);
 };
@@ -205,8 +205,8 @@ exports.debug = (type, message, group, user,
  * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
  */
 exports.warn = (type, message, group, user, 
-    // tslint:disable-next-line: no-any
-    meta) => {
+// tslint:disable-next-line: no-any
+meta) => {
     const span = new LogSpan();
     span.warn(type, message, group, user, meta);
 };
@@ -221,8 +221,8 @@ exports.warn = (type, message, group, user,
  */
 // tslint:disable-next-line: no-any
 exports.info = (type, message, group, user, 
-    // tslint:disable-next-line: no-any
-    meta) => {
+// tslint:disable-next-line: no-any
+meta) => {
     const span = new LogSpan();
     span.info(type, message, group, user, meta);
 };
@@ -237,8 +237,8 @@ exports.info = (type, message, group, user,
  */
 // tslint:disable-next-line: no-any
 exports.error = (type, message, group, user, 
-    // tslint:disable-next-line: no-any
-    meta) => {
+// tslint:disable-next-line: no-any
+meta) => {
     const span = new LogSpan();
     span.error(type, message, group, user, meta);
 };

@@ -4,13 +4,13 @@ export declare enum LogGroup {
     Response = "response",
     Session = "session",
     Security = "security",
-    Technical = "technical",
+    Technical = "technical"
 }
 export declare enum LogLevel {
     Debug = "debug",
     Info = "info",
     Warning = "warning",
-    Error = "error",
+    Error = "error"
 }
 /**
  * LogSpan class that can be used to log certain spans. Provides X-Ray support.
@@ -67,7 +67,7 @@ export declare class LogSpan {
      * Manipulates the LogEntry into a well formatted log row.
      * @param entry Log entry object.
      */
-    private output(entry);
+    private output;
 }
 export declare type LogFunction = (type: string, message: string, group: LogGroup, user?: string, meta?: any) => void;
 /**
