@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.error = exports.info = exports.warn = exports.debug = exports.LogSpan = exports.LogLevel = exports.LogGroup = void 0;
+const util = require("util");
 const uuid = require("uuid");
 // tslint:disable-next-line:completed-docs
 var LogGroup;
@@ -163,7 +165,7 @@ class LogSpan {
             // Log level configured above this message so ignore it.
             return;
         }
-        const formattedRow = JSON.stringify({
+        const formattedRow = JSON.stringify(util.inspect({
             timestamp: (entry.timestamp ? entry.timestamp : new Date()).toISOString(),
             level: entry.level,
             rid: this.requestId,
@@ -172,7 +174,7 @@ class LogSpan {
             group: entry.group,
             user: entry.user ? entry.user : 'SYSTEM',
             meta: entry.meta ? formatMeta(entry.meta) : {}
-        });
+        }));
         // Pushing everything into the logs through std::out and std::err and then on AWS end it's properly collected.
         // tslint:disable-next-line: no-console
         console.log(formattedRow);
