@@ -1,3 +1,4 @@
+import * as util from 'util';
 import * as uuid from 'uuid';
 
 // tslint:disable-next-line:completed-docs
@@ -195,7 +196,7 @@ export class LogSpan {
             return;
         }
 
-        const formattedRow: string = JSON.stringify({
+        const formattedRow: string = JSON.stringify(util.inspect({
             timestamp: (entry.timestamp ? entry.timestamp : new Date()).toISOString(),
             level: entry.level,
             rid: this.requestId,
@@ -204,7 +205,7 @@ export class LogSpan {
             group: entry.group,
             user: entry.user ? entry.user : 'SYSTEM',
             meta: entry.meta ? formatMeta(entry.meta) : {}
-        });
+        }));
         // Pushing everything into the logs through std::out and std::err and then on AWS end it's properly collected.
         // tslint:disable-next-line: no-console
         console.log(formattedRow);

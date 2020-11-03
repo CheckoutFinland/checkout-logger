@@ -17,6 +17,14 @@ describe('Logger', () => {
         describe('error works', () => {
             logger.error('test', 'message', logger.LogGroup.Technical, 'user');
         });
+        describe('circular meta works', () => {
+            const circularObject: {[key: string]: unknown} = {
+                foo: 'bar',
+                circle: {}
+            };
+            circularObject.circle = circularObject;
+            logger.error('test', 'message', logger.LogGroup.Technical, 'user', circularObject);
+        });
     });
 
     it('with span', () => {
