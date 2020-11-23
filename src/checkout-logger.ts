@@ -1,4 +1,5 @@
 import * as uuid from 'uuid';
+import { stringify } from './stringify';
 
 // tslint:disable-next-line:completed-docs
 export enum LogGroup {
@@ -195,7 +196,7 @@ export class LogSpan {
             return;
         }
 
-        const formattedRow: string = JSON.stringify({
+        const formattedRow: string = stringify({
             timestamp: (entry.timestamp ? entry.timestamp : new Date()).toISOString(),
             level: entry.level,
             rid: this.requestId,

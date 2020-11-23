@@ -17,6 +17,15 @@ describe('Logger', () => {
         describe('error works', () => {
             logger.error('test', 'message', logger.LogGroup.Technical, 'user');
         });
+        describe('circular reference works', () => {
+            // tslint:disable-next-line: no-any
+            const circular: { [key: string]: any } = {
+                foo: 'bar',
+                itself: {}
+            };
+            circular.itself = circular;
+            logger.error('test', 'message', logger.LogGroup.Technical, 'user', circular);
+        });
     });
 
     it('with span', () => {
