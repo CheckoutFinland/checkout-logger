@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.error = exports.info = exports.warn = exports.debug = exports.LogSpan = exports.LogLevel = exports.LogGroup = void 0;
 const uuid = require("uuid");
+const stringify_1 = require("./stringify");
 // tslint:disable-next-line:completed-docs
 var LogGroup;
 (function (LogGroup) {
@@ -163,7 +165,7 @@ class LogSpan {
             // Log level configured above this message so ignore it.
             return;
         }
-        const formattedRow = JSON.stringify({
+        const formattedRow = stringify_1.stringify({
             timestamp: (entry.timestamp ? entry.timestamp : new Date()).toISOString(),
             level: entry.level,
             rid: this.requestId,
@@ -189,12 +191,13 @@ exports.LogSpan = LogSpan;
  * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
  */
 // tslint:disable-next-line: no-any
-exports.debug = (type, message, group, user, 
+const debug = (type, message, group, user, 
 // tslint:disable-next-line: no-any
 meta) => {
     const span = new LogSpan();
     span.debug(type, message, group, user, meta);
 };
+exports.debug = debug;
 /**
  * Warning type log entry. Be aware of the fact that you should NEVER log any sensitive information.
  *
@@ -204,12 +207,13 @@ meta) => {
  * @param user Who is being logged.
  * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
  */
-exports.warn = (type, message, group, user, 
+const warn = (type, message, group, user, 
 // tslint:disable-next-line: no-any
 meta) => {
     const span = new LogSpan();
     span.warn(type, message, group, user, meta);
 };
+exports.warn = warn;
 /**
  * Info type log entry. Be aware of the fact that you should NEVER log any sensitive information.
  *
@@ -220,12 +224,13 @@ meta) => {
  * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
  */
 // tslint:disable-next-line: no-any
-exports.info = (type, message, group, user, 
+const info = (type, message, group, user, 
 // tslint:disable-next-line: no-any
 meta) => {
     const span = new LogSpan();
     span.info(type, message, group, user, meta);
 };
+exports.info = info;
 /**
  * Error type log entry. Be aware of the fact that you should NEVER log any sensitive information.
  *
@@ -236,10 +241,11 @@ meta) => {
  * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
  */
 // tslint:disable-next-line: no-any
-exports.error = (type, message, group, user, 
+const error = (type, message, group, user, 
 // tslint:disable-next-line: no-any
 meta) => {
     const span = new LogSpan();
     span.error(type, message, group, user, meta);
 };
+exports.error = error;
 //# sourceMappingURL=checkout-logger.js.map
