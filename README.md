@@ -1,5 +1,9 @@
 # Checkout Logger
 
+## ❗ Deprecated
+
+This project is no longer maintained.
+
 ## How to use
 
 * `npm install git+ssh://<repo url> --save`
