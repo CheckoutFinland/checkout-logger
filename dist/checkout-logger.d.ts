@@ -16,8 +16,8 @@ export declare enum LogLevel {
  * LogSpan class that can be used to log certain spans. Provides X-Ray support.
  */
 export declare class LogSpan {
-    private requestId;
-    private logLevels;
+    private readonly requestId;
+    private readonly logLevels;
     /**
      * Constructor function for LogSpan. Marks down the start time for the span.
      * @param {string} requestId Request ID to log into the span.

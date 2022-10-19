@@ -4,7 +4,7 @@
  * @param object Object to stringify
  */
 export const stringify: (object: Record<string, unknown>) => string = (object) => {
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line functional/prefer-readonly-type
     const cache: any[] = [];
 
     return JSON.stringify(object,
@@ -14,6 +14,7 @@ export const stringify: (object: Record<string, unknown>) => string = (object) =
                 if (cache.indexOf(value) !== -1) {
                     return '[Circular]';
                 }
+                // eslint-disable-next-line functional/immutable-data
                 cache.push(value);
             }
 
