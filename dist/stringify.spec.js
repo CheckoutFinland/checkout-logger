@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable: no-any
+/* eslint-disable functional/immutable-data */
+/* eslint-disable functional/prefer-readonly-type */
+/* eslint-disable functional/no-return-void */
 const chai_1 = require("chai");
 const stringify_1 = require("./stringify");
 describe('Stringify', () => {
@@ -11,7 +13,7 @@ describe('Stringify', () => {
                 bar: 'foo'
             }
         };
-        chai_1.expect(stringify_1.stringify(foo)).to.equal(JSON.stringify(foo));
+        (0, chai_1.expect)((0, stringify_1.stringify)(foo)).to.equal(JSON.stringify(foo));
     });
     it('removes circular references', () => {
         const circular = {
@@ -19,7 +21,7 @@ describe('Stringify', () => {
             itself: {}
         };
         circular.itself = circular;
-        chai_1.expect(stringify_1.stringify(circular)).to.equal('{"foo":"bar","itself":"[Circular]"}');
+        (0, chai_1.expect)((0, stringify_1.stringify)(circular)).to.equal('{"foo":"bar","itself":"[Circular]"}');
     });
     it('removes circular references deeper in the hierarchy', () => {
         const circular = {
@@ -29,7 +31,7 @@ describe('Stringify', () => {
             }
         };
         circular.more.itself = circular;
-        chai_1.expect(stringify_1.stringify(circular)).to.equal('{"foo":"bar","more":{"bar":"foo","itself":"[Circular]"}}');
+        (0, chai_1.expect)((0, stringify_1.stringify)(circular)).to.equal('{"foo":"bar","more":{"bar":"foo","itself":"[Circular]"}}');
     });
 });
 //# sourceMappingURL=stringify.spec.js.map
