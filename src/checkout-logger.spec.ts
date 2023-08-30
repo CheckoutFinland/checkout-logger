@@ -1,3 +1,4 @@
+/* eslint-disable functional/prefer-immutable-types */
 /* eslint-disable functional/immutable-data */
 /* eslint-disable functional/no-return-void */
 import { LogSpan } from './checkout-logger';
