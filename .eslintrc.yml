@@ -36,7 +36,7 @@ rules:
   # these are on
   functional/no-let: error
   functional/no-return-void: error
-  functional/no-loop-statement: error
+  functional/no-loop-statements: error
   eqeqeq: error
   quotes:
     - error

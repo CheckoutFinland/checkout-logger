@@ -3,8 +3,9 @@
  *
  * @param object Object to stringify
  */
+// eslint-disable-next-line functional/prefer-immutable-types
 export const stringify: (object: Record<string, unknown>) => string = (object) => {
-    // eslint-disable-next-line functional/prefer-readonly-type
+    // eslint-disable-next-line functional/prefer-readonly-type, functional/prefer-immutable-types
     const cache: any[] = [];
 
     return JSON.stringify(object,
