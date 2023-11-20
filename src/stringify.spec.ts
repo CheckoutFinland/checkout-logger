@@ -1,4 +1,7 @@
-// tslint:disable: no-any
+/* eslint-disable functional/prefer-immutable-types */
+/* eslint-disable functional/immutable-data */
+/* eslint-disable functional/prefer-readonly-type */
+/* eslint-disable functional/no-return-void */
 import { expect } from 'chai';
 import { stringify } from './stringify';
 

@@ -7,7 +7,7 @@ exports.stringify = void 0;
  * @param object Object to stringify
  */
 const stringify = (object) => {
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line functional/prefer-readonly-type
     const cache = [];
     return JSON.stringify(object, (_key, value) => {
         if (typeof value === 'object' && value !== null) {
@@ -15,6 +15,7 @@ const stringify = (object) => {
             if (cache.indexOf(value) !== -1) {
                 return '[Circular]';
             }
+            // eslint-disable-next-line functional/immutable-data
             cache.push(value);
         }
         return value;

@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.error = exports.info = exports.warn = exports.debug = exports.LogSpan = exports.LogLevel = exports.LogGroup = void 0;
 const uuid = require("uuid");
 const stringify_1 = require("./stringify");
-// tslint:disable-next-line:completed-docs
 var LogGroup;
 (function (LogGroup) {
     LogGroup["Audit"] = "audit";
@@ -13,7 +12,6 @@ var LogGroup;
     LogGroup["Security"] = "security";
     LogGroup["Technical"] = "technical";
 })(LogGroup = exports.LogGroup || (exports.LogGroup = {}));
-// tslint:disable-next-line:completed-docs
 var LogLevel;
 (function (LogLevel) {
     LogLevel["Debug"] = "debug";
@@ -38,7 +36,6 @@ const isValidLogLevel = (level) => {
  * @returns {string} Name of log level ('debug', 'warning', 'info', 'error')
  */
 const getLogLevel = () => {
-    // tslint:disable-next-line:no-string-literal
     const logLevel = process.env['CHECKOUT_LOGLEVEL'];
     return isValidLogLevel(logLevel) ? logLevel : 'debug';
 };
@@ -47,14 +44,14 @@ const getLogLevel = () => {
  *
  * @param item Any item to check
  */
-// tslint:disable-next-line:no-any
-const isError = (item) => item instanceof Object && item.hasOwnProperty('stack') && item.hasOwnProperty('message');
+const isError = 
+// eslint-disable-next-line no-prototype-builtins
+(item) => item instanceof Object && item.hasOwnProperty('stack') && item.hasOwnProperty('message');
 /**
  * Return the given meta, or if it is an error, return object with message and stack
  *
  * @param meta Any item
  */
-// tslint:disable-next-line:no-any
 const formatMeta = (meta) => isError(meta) ? { message: meta.message, stack: meta.stack } : meta;
 /**
  * LogSpan class that can be used to log certain spans. Provides X-Ray support.
@@ -72,7 +69,6 @@ class LogSpan {
             info: { debug: false, info: true, warning: true, error: true },
             warning: { debug: false, info: false, warning: true, error: true },
             error: { debug: false, info: false, warning: false, error: true }
-            // tslint:disable-next-line: no-any
         }[configuredLogLevel];
     }
     /**
@@ -84,7 +80,7 @@ class LogSpan {
      * @param user Who is being logged.
      * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
      */
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line functional/no-return-void
     debug(type, message, group, user, meta) {
         this.output({
             level: LogLevel.Debug,
@@ -104,7 +100,7 @@ class LogSpan {
      * @param user Who is being logged.
      * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
      */
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line functional/no-return-void
     warn(type, message, group, user, meta) {
         this.output({
             level: LogLevel.Warning,
@@ -124,7 +120,7 @@ class LogSpan {
      * @param user Who is being logged.
      * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
      */
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line functional/no-return-void
     info(type, message, group, user, meta) {
         this.output({
             level: LogLevel.Info,
@@ -144,7 +140,7 @@ class LogSpan {
      * @param user Who is being logged.
      * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
      */
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line functional/no-return-void
     error(type, message, group, user, meta) {
         this.output({
             level: LogLevel.Error,
@@ -159,13 +155,13 @@ class LogSpan {
      * Manipulates the LogEntry into a well formatted log row.
      * @param entry Log entry object.
      */
+    // eslint-disable-next-line functional/no-return-void
     output(entry) {
-        // tslint:disable-next-line: no-any
         if (!this.logLevels[entry.level] || process.env.SUPPRESS_LOG_OUTPUT === 'true') {
             // Log level configured above this message so ignore it.
             return;
         }
-        const formattedRow = stringify_1.stringify({
+        const formattedRow = (0, stringify_1.stringify)({
             timestamp: (entry.timestamp ? entry.timestamp : new Date()).toISOString(),
             level: entry.level,
             rid: this.requestId,
@@ -176,7 +172,6 @@ class LogSpan {
             meta: entry.meta ? formatMeta(entry.meta) : {}
         });
         // Pushing everything into the logs through std::out and std::err and then on AWS end it's properly collected.
-        // tslint:disable-next-line: no-console
         console.log(formattedRow);
     }
 }
@@ -190,10 +185,9 @@ exports.LogSpan = LogSpan;
  * @param user Who is being logged.
  * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
  */
-// tslint:disable-next-line: no-any
-const debug = (type, message, group, user, 
-// tslint:disable-next-line: no-any
-meta) => {
+const debug = (type, message, group, user, meta
+// eslint-disable-next-line functional/no-return-void
+) => {
     const span = new LogSpan();
     span.debug(type, message, group, user, meta);
 };
@@ -207,9 +201,9 @@ exports.debug = debug;
  * @param user Who is being logged.
  * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
  */
-const warn = (type, message, group, user, 
-// tslint:disable-next-line: no-any
-meta) => {
+const warn = (type, message, group, user, meta
+// eslint-disable-next-line functional/no-return-void
+) => {
     const span = new LogSpan();
     span.warn(type, message, group, user, meta);
 };
@@ -223,10 +217,9 @@ exports.warn = warn;
  * @param user Who is being logged.
  * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
  */
-// tslint:disable-next-line: no-any
-const info = (type, message, group, user, 
-// tslint:disable-next-line: no-any
-meta) => {
+const info = (type, message, group, user, meta
+// eslint-disable-next-line functional/no-return-void
+) => {
     const span = new LogSpan();
     span.info(type, message, group, user, meta);
 };
@@ -240,10 +233,9 @@ exports.info = info;
  * @param user Who is being logged.
  * @param meta Meta information, can be any kind of JSON object that gets stringified into the context.
  */
-// tslint:disable-next-line: no-any
-const error = (type, message, group, user, 
-// tslint:disable-next-line: no-any
-meta) => {
+const error = (type, message, group, user, meta
+// eslint-disable-next-line functional/no-return-void
+) => {
     const span = new LogSpan();
     span.error(type, message, group, user, meta);
 };

@@ -1,0 +1,59 @@
+env:
+  browser: true
+  es6: true
+  node: true
+extends:
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/recommended'
+  - 'plugin:@typescript-eslint/eslint-recommended'
+  - 'plugin:@typescript-eslint/recommended-requiring-type-checking'
+  - 'plugin:functional/no-mutations'
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 2018
+  project: ./tsconfig.json
+  sourceType: module
+plugins:
+  - '@typescript-eslint'
+  - 'functional'
+rules:
+  # these are off
+  '@typescript-eslint/no-explicit-any':
+    - off # would be a good idea to get ready of any-types and then enable this rule
+  '@typescript-eslint/interface-name-prefix':
+    - off
+  '@typescript-eslint/no-unsafe-member-access':
+    - off
+  '@typescript-eslint/no-unsafe-assignment':
+    - off
+  '@typescript-eslint/no-unsafe-call':
+    - off
+  '@typescript-eslint/no-unsafe-return':
+    - off
+  # these are on
+  functional/no-let: error
+  functional/no-return-void: error
+  functional/no-loop-statements: error
+  eqeqeq: error
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - always
+  linebreak-style:
+    - error
+    - unix
+  max-len:
+      - error
+      - code: 120
+  '@typescript-eslint/explicit-function-return-type': error
+  'functional/immutable-data': error
+  '@typescript-eslint/no-unused-vars': error
+  '@typescript-eslint/no-inferrable-types': error
+  '@typescript-eslint/ban-types': error
+  '@typescript-eslint/consistent-type-assertions': error
+  '@typescript-eslint/triple-slash-reference': error
