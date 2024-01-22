@@ -11,14 +11,14 @@ var LogGroup;
     LogGroup["Session"] = "session";
     LogGroup["Security"] = "security";
     LogGroup["Technical"] = "technical";
-})(LogGroup = exports.LogGroup || (exports.LogGroup = {}));
+})(LogGroup || (exports.LogGroup = LogGroup = {}));
 var LogLevel;
 (function (LogLevel) {
     LogLevel["Debug"] = "debug";
     LogLevel["Info"] = "info";
     LogLevel["Warning"] = "warning";
     LogLevel["Error"] = "error";
-})(LogLevel = exports.LogLevel || (exports.LogLevel = {}));
+})(LogLevel || (exports.LogLevel = LogLevel = {}));
 /**
  * Tests if the set log level is something we support.
  * @param level Log level.
@@ -155,7 +155,7 @@ class LogSpan {
      * Manipulates the LogEntry into a well formatted log row.
      * @param entry Log entry object.
      */
-    // eslint-disable-next-line functional/no-return-void
+    // eslint-disable-next-line functional/no-return-void, functional/prefer-immutable-types
     output(entry) {
         if (!this.logLevels[entry.level] || process.env.SUPPRESS_LOG_OUTPUT === 'true') {
             // Log level configured above this message so ignore it.
@@ -188,6 +188,7 @@ exports.LogSpan = LogSpan;
 const debug = (type, message, group, user, meta
 // eslint-disable-next-line functional/no-return-void
 ) => {
+    // eslint-disable-next-line functional/prefer-immutable-types
     const span = new LogSpan();
     span.debug(type, message, group, user, meta);
 };
@@ -204,6 +205,7 @@ exports.debug = debug;
 const warn = (type, message, group, user, meta
 // eslint-disable-next-line functional/no-return-void
 ) => {
+    // eslint-disable-next-line functional/prefer-immutable-types
     const span = new LogSpan();
     span.warn(type, message, group, user, meta);
 };
@@ -220,6 +222,7 @@ exports.warn = warn;
 const info = (type, message, group, user, meta
 // eslint-disable-next-line functional/no-return-void
 ) => {
+    // eslint-disable-next-line functional/prefer-immutable-types
     const span = new LogSpan();
     span.info(type, message, group, user, meta);
 };
@@ -236,6 +239,7 @@ exports.info = info;
 const error = (type, message, group, user, meta
 // eslint-disable-next-line functional/no-return-void
 ) => {
+    // eslint-disable-next-line functional/prefer-immutable-types
     const span = new LogSpan();
     span.error(type, message, group, user, meta);
 };
