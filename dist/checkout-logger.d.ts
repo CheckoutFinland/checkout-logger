@@ -69,7 +69,7 @@ export declare class LogSpan {
      */
     private output;
 }
-export declare type LogFunction = (type: string, message: string, group: LogGroup, user?: string, meta?: any) => void;
+export type LogFunction = (type: string, message: string, group: LogGroup, user?: string, meta?: any) => void;
 /**
  * Debug type log entry. Be aware of the fact that you should NEVER log any sensitive information.
  *
